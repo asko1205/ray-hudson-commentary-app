@@ -6,10 +6,8 @@ export default class App extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text>Open up App.js to start working on your app!</Text>
-        <Text>Changes you make will automatically reload.</Text>
-        <Text>Shake your phone to open the developer menu.</Text>
-        <Quote quote='Hi there'></Quote>
+        <Text style={styles.title}>Best of Ray Hudson: Football Quotes</Text>
+        <Quote></Quote>
       </View>
     );
   }
@@ -22,4 +20,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  title: {
+    color: '#3CDBD3',
+    fontSize: 40,
+    marginTop: 20
+  }
 });

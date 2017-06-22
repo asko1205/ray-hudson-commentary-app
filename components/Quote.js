@@ -1,5 +1,5 @@
 import React from 'react';
-import { ActivityIndicator, ListView, Text, View } from 'react-native';
+import { ActivityIndicator, StyleSheet, ListView, Text, View } from 'react-native';
 
 export default class Quote extends React.Component{
   constructor(props) {
@@ -37,9 +37,26 @@ export default class Quote extends React.Component{
       <View style={{flex: 1, paddingTop: 20}}>
         <ListView
           dataSource={this.state.dataSource}
-          renderRow={(rowData) => <Text>{rowData.text}</Text>}
+          renderRow={(rowData) => <View style={styles.container}><Text>{rowData.text}</Text></View>}
         />
       </View>
     );
   }
 };
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#77BFA3',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: 20,
+    paddingBottom: 30,
+    paddingTop: 30,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.8,
+    shadowRadius: 3,
+    elevation: 3
+  },
+});
