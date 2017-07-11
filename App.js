@@ -7,32 +7,11 @@ import Expo, { Asset, Audio, Font, Video } from 'expo';
 
 export default class App extends React.Component {
 
-  constructor(props) {
-    super(props);
-    this._loadNewPlaybackInstance();
-  }
-
-  async _loadNewPlaybackInstance() {
-    if (this.playbackInstance != null) {
-      await this.playbackInstance.unloadAsync();
-      this.playbackInstance.setCallback(null);
-      this.playbackInstance = null;
-    }
-
-    const source = { uri: "https://s3-us-west-2.amazonaws.com/ray-hudson-soundbites/01matadorinhighheels.mp3" };
-    const sound = new Expo.Audio.Sound({
-      source: source.uri
-    });
-    this.playbackInstance = sound;
-  }
-
-  _onPlayPausePressed = () => {
-  console.log("hi there")
-   if (this.playbackInstance != null) {
-     this.playbackInstance.loadAsync();
-      this.playbackInstance.setPositionAsync(0)
-      this.playbackInstance.playAsync();
-   }
+  playSound = async () => {
+    await Expo.Audio.setIsEnabledAsync(true);
+    const sound = new Expo.Audio.Sound();
+    await sound.loadAsync({ uri: "https://s3-us-west-2.amazonaws.com/ray-hudson-soundbites/01matadorinhighheels.mp3" });
+    await sound.playAsync();
   };
 
   render() {
@@ -40,7 +19,7 @@ export default class App extends React.Component {
       <View style={styles.container}>
         <Text style={styles.title}>Best of Ray Hudson: Football Quotes</Text>
         <Button
-          onPress={this._onPlayPausePressed}
+          onPress={this.playSound}
           title="Learn More"
           color="#841584"
           accessibilityLabel="Learn more about this purple button"
