@@ -1,6 +1,8 @@
 import React from 'react';
 import { ActivityIndicator, StyleSheet, ListView, Text, View } from 'react-native';
 
+import Row from './Row';
+
 export default class Quote extends React.Component{
   constructor(props) {
     super(props);
@@ -37,7 +39,7 @@ export default class Quote extends React.Component{
       <View style={{flex: 1, paddingTop: 20}}>
         <ListView
           dataSource={this.state.dataSource}
-          renderRow={(rowData) => <View style={styles.container}><Text>{rowData.text}</Text></View>}
+          renderRow={(rowData) => <View style={styles.container}><Row data={rowData} /></View>}
         />
       </View>
     );
